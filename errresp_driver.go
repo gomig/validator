@@ -63,7 +63,7 @@ func (er *errorResponseDriver) String() string {
 
 // Messages get error messages only without errors
 func (er *errorResponseDriver) Messages() map[string][]string {
-	var msg map[string][]string
+	msg := make(map[string][]string)
 	for f, errs := range er.errors {
 		msg[f] = make([]string, 0)
 		for _, m := range errs {
@@ -75,7 +75,7 @@ func (er *errorResponseDriver) Messages() map[string][]string {
 
 // Rules get error rules only without error message
 func (er *errorResponseDriver) Rules() map[string][]string {
-	var msg map[string][]string
+	msg := make(map[string][]string)
 	for f, errs := range er.errors {
 		msg[f] = make([]string, 0)
 		for rule := range errs {

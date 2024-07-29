@@ -6,7 +6,7 @@ import (
 )
 
 func nationalCodeValidation(fl validator.FieldLevel) bool {
-	return v.ISNationalCode(fl.Field().String())
+	return v.IsNationalCode(fl.Field().String())
 }
 
 // RegisterNationalCodeValidation register validations with translations

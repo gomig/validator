@@ -7,6 +7,7 @@ func RegisterExtraValidations(v validator.Validator) {
 	RegisterAlNumValidation(v)
 	RegisterAlNumFaValidation(v)
 	RegisterCreditCardValidation(v)
+	RegisterIBAN(v)
 	RegisterIdentifierValidation(v)
 	RegisterIDNumberValidation(v)
 	RegisterIPPortValidation(v)

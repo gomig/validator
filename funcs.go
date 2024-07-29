@@ -55,17 +55,24 @@ func IsIDNumber(idNum string) bool {
 	return r.MatchString(idNum)
 }
 
-// ISNationalCode check if string is valid id national code
-func ISNationalCode(idNum string) bool {
+// IsNationalCode check if string is valid national code
+func IsNationalCode(idNum string) bool {
 	rx := regexp.MustCompile(`[\d]+`)
 	rm := regexp.MustCompile(`^\d{10}$`)
 	return rm.MatchString(strings.Join(rx.FindAllString(idNum, -1), ""))
 }
 
-// IsCreditCardNumber check if string is valid id credit card number
+// IsCreditCardNumber check if string is valid credit card number
 func IsCreditCardNumber(num string) bool {
 	rx := regexp.MustCompile(`[\d]+`)
 	rm := regexp.MustCompile(`^(\d{16})|(\d{20})$`)
+	return rm.MatchString(strings.Join(rx.FindAllString(num, -1), ""))
+}
+
+// IsIBAN check if string is valid iban number
+func IsIBAN(num string) bool {
+	rx := regexp.MustCompile(`[\d]+`)
+	rm := regexp.MustCompile(`^(\d{24})$`)
 	return rm.MatchString(strings.Join(rx.FindAllString(num, -1), ""))
 }
 
@@ -134,7 +141,7 @@ func ValidateUploadExt(file *multipart.FileHeader, exts ...string) (bool, error)
 		return false, err
 	} else if mime != nil {
 		for _, ext := range exts {
-			if strings.ToLower(ext) == strings.ToLower(mime.Extension()) {
+			if strings.EqualFold(ext, mime.Extension()) {
 				return true, nil
 			}
 		}
